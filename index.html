@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Favorite Soft Summer Girl</title>
+  <style>
+    :root {
+      --ink: #3d3934;
+      --muted: #6b655d;
+      --line: rgba(90, 74, 61, 0.14);
+      --shadow: 0 20px 45px rgba(74, 60, 50, 0.12);
+      --spring-1: #f8f3df;
+      --spring-2: #f8dbe7;
+      --spring-3: #e5f3de;
+      --life-1: #edf8e8;
+      --life-2: #fdf3dc;
+      --fire-1: #fff1df;
+      --fire-2: #ffd7bf;
+      --fire-3: #f5c4b7;
+      --night-1: #eadfff;
+      --night-2: #ffd8e7;
+      --night-3: #ffe9c8;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        linear-gradient(
+          180deg,
+          var(--spring-1) 0%,
+          var(--spring-2) 12%,
+          var(--spring-3) 26%,
+          var(--life-1) 42%,
+          var(--life-2) 56%,
+          var(--fire-1) 56%,
+          var(--fire-2) 74%,
+          var(--fire-3) 83%,
+          var(--night-1) 83%,
+          var(--night-2) 92%,
+          var(--night-3) 100%
+        );
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,0.55), transparent 18%),
+        radial-gradient(circle at 80% 12%, rgba(255,244,190,0.28), transparent 16%),
+        radial-gradient(circle at 18% 65%, rgba(255,190,120,0.18), transparent 22%),
+        radial-gradient(circle at 82% 82%, rgba(181,155,255,0.16), transparent 20%);
+      z-index: 0;
+    }
+
+    .petals,
+    .sparkles,
+    .floaters,
+    .drifters {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .petals::before,
+    .sparkles::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-repeat: repeat;
+      opacity: 0.3;
+    }
+
+    .petals::before {
+      background-image:
+        radial-gradient(circle, rgba(233,183,200,0.72) 0 7px, transparent 8px),
+        radial-gradient(circle, rgba(200,223,192,0.72) 0 6px, transparent 7px);
+      background-size: 180px 180px, 230px 230px;
+      background-position: 20px 40px, 90px 120px;
+      animation: drift 22s linear infinite;
+    }
+
+    .sparkles::before {
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.95) 0 1.4px, transparent 2px),
+        radial-gradient(circle, rgba(255,244,212,0.85) 0 1.8px, transparent 2px);
+      background-size: 140px 140px, 180px 180px;
+      animation: twinkle 8s ease-in-out infinite alternate;
+    }
+
+    .floater {
+      position: absolute;
+      font-size: clamp(1.4rem, 2vw, 2.2rem);
+      opacity: 0.26;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.06));
+      user-select: none;
+      will-change: transform;
+    }
+
+    .floater:nth-child(1)  { left: 3%;  top: 5%;  animation: floatA 19s ease-in-out infinite; }
+    .floater:nth-child(2)  { left: 12%; top: 18%; animation: floatB 23s ease-in-out infinite; }
+    .floater:nth-child(3)  { left: 8%;  top: 39%; animation: floatC 21s ease-in-out infinite; }
+    .floater:nth-child(4)  { left: 16%; top: 62%; animation: floatA 24s ease-in-out infinite; }
+    .floater:nth-child(5)  { left: 6%;  top: 84%; animation: floatB 20s ease-in-out infinite; }
+    .floater:nth-child(6)  { left: 88%; top: 8%;  animation: floatC 22s ease-in-out infinite; }
+    .floater:nth-child(7)  { left: 81%; top: 24%; animation: floatA 25s ease-in-out infinite; }
+    .floater:nth-child(8)  { left: 91%; top: 43%; animation: floatB 18s ease-in-out infinite; }
+    .floater:nth-child(9)  { left: 84%; top: 66%; animation: floatC 24s ease-in-out infinite; }
+    .floater:nth-child(10) { left: 90%; top: 86%; animation: floatA 21s ease-in-out infinite; }
+    .floater:nth-child(11) { left: 42%; top: 6%;  animation: floatB 26s ease-in-out infinite; }
+    .floater:nth-child(12) { left: 58%; top: 14%; animation: floatC 20s ease-in-out infinite; }
+    .floater:nth-child(13) { left: 34%; top: 30%; animation: floatA 23s ease-in-out infinite; }
+    .floater:nth-child(14) { left: 63%; top: 48%; animation: floatB 19s ease-in-out infinite; }
+    .floater:nth-child(15) { left: 47%; top: 72%; animation: floatC 22s ease-in-out infinite; }
+    .floater:nth-child(16) { left: 56%; top: 90%; animation: floatA 25s ease-in-out infinite; }
+
+    .drifter {
+      position: absolute;
+      font-size: clamp(1.8rem, 2.8vw, 3.2rem);
+      opacity: 0.42;
+      user-select: none;
+      filter: drop-shadow(0 10px 12px rgba(0,0,0,0.08));
+      will-change: transform;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .drifter:nth-child(1) { top: 12%; animation: cross1 24s linear infinite; }
+    .drifter:nth-child(2) { top: 28%; animation: cross2 30s linear infinite; }
+    .drifter:nth-child(3) { top: 44%; animation: cross3 26s linear infinite; }
+    .drifter:nth-child(4) { top: 60%; animation: cross4 34s linear infinite; }
+    .drifter:nth-child(5) { top: 76%; animation: cross5 29s linear infinite; }
+    .drifter:nth-child(6) { top: 88%; animation: cross6 33s linear infinite; }
+
+    @keyframes drift {
+      from { transform: translateY(-8px) translateX(0px); }
+      to { transform: translateY(12px) translateX(-10px); }
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 0.48; }
+    }
+
+    @keyframes floatA {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      25% { transform: translate3d(12px, -18px, 0) rotate(5deg); }
+      50% { transform: translate3d(-10px, 14px, 0) rotate(-4deg); }
+      75% { transform: translate3d(16px, -10px, 0) rotate(6deg); }
+    }
+
+    @keyframes floatB {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      30% { transform: translate3d(-14px, -16px, 0) rotate(-6deg); }
+      60% { transform: translate3d(12px, 12px, 0) rotate(4deg); }
+      80% { transform: translate3d(-8px, -8px, 0) rotate(-3deg); }
+    }
+
+    @keyframes floatC {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      20% { transform: translate3d(10px, -12px, 0) rotate(4deg); }
+      55% { transform: translate3d(-16px, 14px, 0) rotate(-5deg); }
+      85% { transform: translate3d(8px, -18px, 0) rotate(5deg); }
+    }
+
+    @keyframes cross1 {
+      0% { transform: translateX(-15vw) translateY(0); }
+      50% { transform: translateX(55vw) translateY(-18px); }
+      100% { transform: translateX(120vw) translateY(8px); }
+    }
+
+    @keyframes cross2 {
+      0% { transform: translateX(110vw) translateY(0); }
+      50% { transform: translateX(45vw) translateY(12px); }
+      100% { transform: translateX(-18vw) translateY(-10px); }
+    }
+
+    @keyframes cross3 {
+      0% { transform: translateX(-12vw) translateY(0); }
+      50% { transform: translateX(60vw) translateY(16px); }
+      100% { transform: translateX(120vw) translateY(-14px); }
+    }
+
+    @keyframes cross4 {
+      0% { transform: translateX(115vw) translateY(0); }
+      50% { transform: translateX(50vw) translateY(-16px); }
+      100% { transform: translateX(-15vw) translateY(10px); }
+    }
+
+    @keyframes cross5 {
+      0% { transform: translateX(-15vw) translateY(0); }
+      50% { transform: translateX(50vw) translateY(14px); }
+      100% { transform: translateX(118vw) translateY(-10px); }
+    }
+
+    @keyframes cross6 {
+      0% { transform: translateX(112vw) translateY(0); }
+      50% { transform: translateX(48vw) translateY(-12px); }
+      100% { transform: translateX(-20vw) translateY(6px); }
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 60px;
+    }
+
+    .hero,
+    .section {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: 0 20px 45px rgba(74, 60, 50, 0.12);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+
+    .hero {
+      padding: 30px 22px 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -60px -90px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 217, 122, 0.32), rgba(255,255,255,0));
+      filter: blur(4px);
+    }
+
+    .section {
+      margin-top: 24px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+    }
+
+    .spring-section {
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(235,247,231,0.04));
+    }
+
+    .fireplace-section {
+      background: linear-gradient(180deg, rgba(255,251,244,0.12), rgba(255,223,201,0.04));
+    }
+
+    .fireplace-section::before {
+      content: "";
+      position: absolute;
+      inset: auto -70px -90px auto;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 168, 91, 0.30), rgba(255,255,255,0));
+      filter: blur(10px);
+    }
+
+    .fireplace-section::after {
+      content: "";
+      position: absolute;
+      inset: 14px 20px auto auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,182,104,0.55), rgba(255,255,255,0));
+      filter: blur(12px);
+      animation: pulse 3.8s ease-in-out infinite;
+    }
+
+    .night-section {
+      background: linear-gradient(180deg, rgba(248,243,255,0.12), rgba(255,222,236,0.04));
+    }
+
+    .night-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 16%, rgba(255, 153, 178, 0.16), transparent 20%),
+        radial-gradient(circle at 86% 20%, rgba(149, 126, 255, 0.14), transparent 18%),
+        radial-gradient(circle at 72% 84%, rgba(255, 190, 100, 0.14), transparent 18%);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.72; }
+      50% { transform: scale(1.08); opacity: 0.96; }
+    }
+
+    .music-bar {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(90, 74, 61, 0.18);
+      background: rgba(255,255,255,0.12);
+      box-shadow: 0 12px 30px rgba(79, 68, 58, 0.12);
+      backdrop-filter: blur(12px);
+      max-width: min(92vw, 560px);
+    }
+
+    .music-text {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .music-btn,
+    .music-link,
+    .copy-btn,
+    .top-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.1);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .music-btn:hover,
+    .music-link:hover,
+    .copy-btn:hover,
+    .top-link:hover,
+    .nav-card:hover,
+    label.choice:hover {
+      transform: translateY(-2px);
+    }
+
+    .eyebrow {
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 5vw, 4.2rem);
+      line-height: 0.95;
+      font-weight: 600;
+      text-transform: none;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 2.5vw, 2.45rem);
+      font-weight: 600;
+    }
+
+    .subtitle,
+    .lead,
+    .footer-note,
+    .mix-note,
+    .prompt,
+    .note-area,
+    .reply-note,
+    .nav-card p,
+    .disclaimer,
+    .choice .small,
+    .option-card p.note,
+    .summary-card p,
+    .summary-output,
+    .summary-hint {
+      color: var(--muted);
+    }
+
+    .subtitle {
+      margin: 16px 0 0;
+      max-width: 720px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .little-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+      align-items: center;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.08);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.94rem;
+    }
+
+    .cat {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.06));
+    }
+
+    .nav-grid,
+    .grid,
+    .summary-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .nav-grid {
+      margin-top: 26px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .summary-grid {
+      margin-top: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+
+    .nav-card,
+    .option-card,
+    .summary-card,
+    .letter,
+    .prompt,
+    .note-area,
+    .mix-note,
+    .disclaimer {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 10px 24px rgba(79, 68, 58, 0.08);
+    }
+
+    .nav-card {
+      text-decoration: none;
+      color: inherit;
+      padding: 18px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .nav-card h3,
+    .option-card h3,
+    .summary-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .nav-card p {
+      margin: 0;
+      line-height: 1.6;
+      font-size: 0.96rem;
+    }
+
+    .disclaimer {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-left: 4px solid rgba(200,223,192,0.95);
+      border-top-left-radius: 16px;
+      border-bottom-left-radius: 16px;
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .lead {
+      margin: 0 0 20px;
+      line-height: 1.7;
+      max-width: 860px;
+    }
+
+    .letter {
+      padding: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.84), rgba(252,249,244,0.72)),
+        repeating-linear-gradient(180deg, rgba(62,58,53,0.04), rgba(62,58,53,0.04) 1px, transparent 1px, transparent 34px);
+    }
+
+    .letter p {
+      margin: 0 0 16px;
+      line-height: 2;
+      font-size: 1.02rem;
+    }
+
+    .prompt-box {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .prompt,
+    .note-area,
+    .mix-note {
+      padding: 14px 16px;
+      line-height: 1.65;
+    }
+
+    .reply-note {
+      margin-top: 14px;
+      font-style: italic;
+    }
+
+    .option-card,
+    .summary-card {
+      position: relative;
+      padding: 18px;
+      min-height: 100%;
+    }
+
+    .option-card p.note {
+      margin: -2px 0 12px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .checks {
+      display: grid;
+      gap: 10px;
+    }
+
+    label.choice {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(87,74,57,0.08);
+      background: rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease;
+      line-height: 1.5;
+    }
+
+    input[type="checkbox"] {
+      margin-top: 4px;
+      accent-color: #8cae85;
+      transform: scale(1.08);
+    }
+
+    .small {
+      display: block;
+      font-size: 0.88rem;
+      margin-top: 3px;
+    }
+
+    .summary-output {
+      min-height: 140px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px dashed rgba(90,74,61,0.22);
+      line-height: 1.75;
+      font-size: 0.98rem;
+    }
+
+    .summary-hint {
+      margin: 12px 0 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .free-input {
+      width: 100%;
+      margin-top: 10px;
+      border: 1px solid rgba(90,74,61,0.16);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      color: var(--ink);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .free-input::placeholder {
+      color: #9a9289;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.93rem;
+      line-height: 1.7;
+    }
+
+    #youtube-player {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .cat {
+        position: static;
+        display: inline-block;
+        margin-top: 14px;
+      }
+
+      .music-bar {
+        right: 10px;
+        left: 10px;
+        bottom: 10px;
+        border-radius: 24px;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(100% - 18px, 1000px);
+        padding-top: 14px;
+      }
+
+      .hero,
+      .section {
+        padding: 18px;
+      }
+
+      .nav-grid,
+      .grid,
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .subtitle {
+        font-size: 0.98rem;
+      }
+
+      .letter p {
+        font-size: 0.98rem;
+        line-height: 1.9;
+      }
+
+      .floater,
+      .drifter {
+        font-size: 1.3rem;
+      }
+
+      .music-text {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="petals"></div>
+  <div class="sparkles"></div>
+  <div class="floaters" aria-hidden="true">
+    <span class="floater">🐈‍⬛</span>
+    <span class="floater">🌸</span>
+    <span class="floater">☀️</span>
+    <span class="floater">🌸</span>
+    <span class="floater">🐈‍⬛</span>
+    <span class="floater">☀️</span>
+    <span class="floater">🌸</span>
+    <span class="floater">🐈‍⬛</span>
+    <span class="floater">☀️</span>
+    <span class="floater">🌸</span>
+    <span class="floater">🐈‍⬛</span>
+    <span class="floater">☀️</span>
+    <span class="floater">🌸</span>
+    <span class="floater">☀️</span>
+    <span class="floater">🐈‍⬛</span>
+    <span class="floater">🌸</span>
+  </div>
+  <div class="drifters" aria-hidden="true">
+    <span class="drifter">🐈‍⬛</span>
+    <span class="drifter">🌸</span>
+    <span class="drifter">☀️</span>
+    <span class="drifter">🌸</span>
+    <span class="drifter">🐈‍⬛</span>
+    <span class="drifter">☀️</span>
+  </div>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/music/song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="music-bar">
+    <button class="music-btn" id="music-toggle" type="button">🎵 Tap for Music</button>
+    <div class="music-text">Good shit Ik</div>
+  </div>
+    <a class="music-link" href="https://www.youtube.com/watch?v=5mWqCnNuxKQ" target="_blank" rel="noopener noreferrer">Open Song ↗</a>
+  </div>
+
+  <main class="wrap" id="top">
+    <section class="hero">
+      <div class="cat">🐈‍⬛☀️🌼</div>
+      <p class="eyebrow">A soft little thing I made for you</p>
+      <h1>For mah Shawty</h1>
+      <p class="subtitle">wanna celebrate u yk</p>
+
+      <div class="little-row">
+        <span class="chip">🐾 Cat-approved in spirit</span>
+        <span class="chip">☁️ Pick as little or as much as you want</span>
+      </div>
+
+      <div class="nav-grid">
+        <a class="nav-card" href="#life-check-in">
+          <h3>🌿 Life Check-In</h3>
+          <p>A small, honest note from me to you — soft, steady, and low-pressure.</p>
+        </a>
+        <a class="nav-card" href="#date-night-in">
+          <h3>🕯️ Date Night In</h3>
+          <p>Fireplace mood, charcuterie round two, cozy choices, and rest time privileges.</p>
+        </a>
+        <a class="nav-card" href="#date-night-out">
+          <h3>🌙 Date Night Out</h3>
+          <p>Light dinner, tiny concerts, picnic sunset ideas, and spa softness.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="section spring-section" id="life-check-in">
+      <h2>🌼 Life Check-In</h2>
+      <p class="lead">A gentle little note with spring in the windows, flowers on the table, and enough room to just be normal with each other.</p>
+
+      <div class="letter">
+        <p>
+          Lately I have been trying to make real changes in how I move through life. I have been cooking and baking more, gaming a little, getting through school work, and trying to fill my days with things that keep me steadier and less stuck in my head.
+        </p>
+        <p>
+          I have also been lightly reconnecting with some old friends, mostly just to have more normal interaction around me and to keep building a healthier rhythm for myself. Nothing dramatic — just trying to be more grounded and less anxious about everything.
+        </p>
+        <p>
+          I wanted to tell you that because it is part of me trying to work on myself and be better for you too. I am trying to be calmer, more present, less in my own head, and less likely to overthink every little thing. I want what you want, and I am learning to meet you where you are, without decoding the fuck outta the situation.
+        </p>
+        <p>
+          So this is just a soft check-in. I hope you are doing okay, or at least being gentle with yourself. If you feel like texting me, I would love to hear how you are doing and what kind of presence feels best from me right now.
+        </p>
+      </div>
+
+      <div class="prompt-box">
+        <div class="prompt">💌 I love your yappery. Seriously. You can text me the small stuff, the weird stuff, the overexplained stuff, the side quests, the spirals, the updates, the thoughts that branch into five other thoughts — all of it is welcome with me.</div>
+        <div class="prompt">🌱 You can also ignore every category below and just tell me what kind of presence feels good to you right now.</div>
+      </div>
+      <div class="reply-note">I am not smart enough to figure out how to see your response here, so please write to me over text ♡</div>
+      <p class="footer-note"><a class="top-link" href="#top">↑ Back to the Front Page</a></p>
+    </section>
+
+    <section class="section fireplace-section plan-section" id="date-night-in">
+      <h2>🕯️🍓🧀 Date Night In</h2>
+      <p class="lead">Fireplace ambiance in the background. Charcuterie night, round two. Less chaos than the candle-making day. Maximum coziness, minimum mess.</p>
+
+      <div class="grid plan-options" data-plan="indoor">
+        <div class="option-card">
+          <h3>🧀 Cheese Kind</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="cheese" data-label="Brie" /> <span>Brie</span></label>
+            <label class="choice"><input type="checkbox" data-group="cheese" data-label="Brie" /> <span>Brie</span></label>
+            <label class="choice"><input type="checkbox" data-group="cheese" data-label="Brie" /> <span>Brie</span></label>
+            <label class="choice"><input type="checkbox" data-group="cheese" data-label="Other cheese" /> <span>Other <span class="small">Note her option</span></span></label>
+            <input class="free-input" type="text" data-free-for="cheese" placeholder="Her cheese choice here..." />
+          </div>
+        </div>
+
+        <div class="option-card">
+          <h3>🥩 Meat Kind</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="meat" data-label="Prosciutto" /> <span>Prosciutto</span></label>
+            <label class="choice"><input type="checkbox" data-group="meat" data-label="Salami" /> <span>Salami</span></label>
+            <label class="choice"><input type="checkbox" data-group="meat" data-label="None" /> <span>None</span></label>
+            <label class="choice"><input type="checkbox" data-group="meat" data-label="You already know 😛" /> <span>You already know 😛 <span class="small">Jk. Personality is better anyway.</span></span></label>
+          </div>
+        </div>
+
+        <div class="option-card">
+          <h3>🍯 Jam Kind</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="jam" data-label="Fig" /> <span>Fig</span></label>
+            <label class="choice"><input type="checkbox" data-group="jam" data-label="Mango" /> <span>Mango</span></label>
+            <label class="choice"><input type="checkbox" data-group="jam" data-label="Marmalade" /> <span>Marmalade</span></label>
+            <label class="choice"><input type="checkbox" data-group="jam" data-label="Apricot" /> <span>Apricot</span></label>
+            <label class="choice"><input type="checkbox" data-group="jam" data-label="Other jam" /> <span>Other</span></label>
+            <input class="free-input" type="text" data-free-for="jam" placeholder="Her jam choice here..." />
+          </div>
+        </div>
+
+        <div class="option-card">
+          <h3>🍞 Cracker Kind</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="cracker" data-label="Something simple and buttery" /> <span>Something simple and buttery</span></label>
+            <label class="choice"><input type="checkbox" data-group="cracker" data-label="Something crunchy and seedy" /> <span>Something crunchy and seedy</span></label>
+            <label class="choice"><input type="checkbox" data-group="cracker" data-label="Something fancy-looking for no reason" /> <span>Something fancy-looking for no reason</span></label>
+            <label class="choice"><input type="checkbox" data-group="cracker" data-label="Other crackers" /> <span>Other</span></label>
+            <input class="free-input" type="text" data-free-for="cracker" placeholder="Her cracker choice here..." />
+          </div>
+        </div>
+
+        <div class="option-card">
+          <h3>🎶 Music Kind</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="music" data-label="R&amp;B" /> <span>R&amp;B</span></label>
+            <label class="choice"><input type="checkbox" data-group="music" data-label="Indie" /> <span>Indie</span></label>
+            <label class="choice"><input type="checkbox" data-group="music" data-label="German underground" /> <span>German underground</span></label>
+            <label class="choice"><input type="checkbox" data-group="music" data-label="Jillian Knows Best" /> <span>Jillian Knows Best</span></label>
+          </div>
+        </div>
+
+        <div class="option-card">
+          <h3>👗 Outfit</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="outfit" data-label="Soft and cute" /> <span>Soft and cute</span></label>
+            <label class="choice"><input type="checkbox" data-group="outfit" data-label="Stolen hoodie energy" /> <span>Stolen hoodie energy</span></label>
+            <label class="choice"><input type="checkbox" data-group="outfit" data-label="Matching-ish but accidental" /> <span>Matching-ish but accidental</span></label>
+            <label class="choice"><input type="checkbox" data-group="outfit" data-label="Other outfit" /> <span>Other</span></label>
+            <input class="free-input" type="text" data-free-for="outfit" placeholder="Her outfit choice here..." />
+          </div>
+        </div>
+
+        <div class="option-card" style="grid-column: 1 / -1;">
+          <h3>🔥 Indoor Activity of the Day</h3>
+          <p class="note">These will be routinely updated. More than one answer is absolutely allowed.</p>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="activity" data-label="Watching something with fireplace ambiance in the background" /> <span>Watch something <span class="small">With fireplace ambiance in the background</span></span></label>
+            <label class="choice"><input type="checkbox" data-group="activity" data-label="Making light food, eating it, and then scrolling Instagram" /> <span>Make some light food, eat it, and then scroll Instagram</span></label>
+            <label class="choice"><input type="checkbox" data-group="activity" data-label="Clay making, then coming back home to sleep while they fire" /> <span>Clay making, then coming back home to sleep while they fire</span></label>
+            <label class="choice"><input type="checkbox" data-group="activity" data-label="Thrifting and sleep" /> <span>Thrifting and sleep</span></label>
+            <label class="choice"><input type="checkbox" data-group="activity" data-label="Other indoor activity" /> <span>Other <span class="small">My beautiful girlfriend's choice</span></span></label>
+            <input class="free-input" type="text" data-free-for="activity" placeholder="Her indoor activity choice here..." />
+          </div>
+        </div>
+      </div>
+
+      <div class="note-area">🥔 P.S. All options come with an optional potato bed for rest time or sleep time.</div>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h3>🫶 Indoor Picks Together</h3>
+          <p>This pulls her checked choices into one place so the plan feels consolidated instead of scattered.</p>
+          <div class="summary-output" id="indoor-summary-list">No indoor picks selected yet — choose as little or as much as you want.</div>
+        </div>
+        <div class="summary-card">
+          <h3>💬 Your Indoor Text Message</h3>
+          <div class="summary-output" id="indoor-text-paragraph">Text me this paragraph once you have picked your indoor combo ♡</div>
+          <div class="action-row">
+            <button class="copy-btn" type="button" data-copy-target="indoor-text-paragraph">📋 Copy Paragraph</button>
+          </div>
+          <p class="summary-hint">Send me this paragraph over text once it looks like you 🕯️</p>
+        </div>
+      </div>
+
+      <p class="footer-note"><a class="top-link" href="#top">↑ Back to the Front Page</a></p>
+    </section>
+
+    <section class="section night-section plan-section" id="date-night-out">
+      <h2>🌙🎶🍸 Date Night Out</h2>
+      <p class="lead">Subtle concert and bar-lighting energy. You can click more than one option here if more than one thing sounds good.</p>
+
+      <div class="grid plan-options" data-plan="outdoor">
+        <div class="option-card">
+          <h3>🍽️ Food Outside, Something Light</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="food" data-label="Juju Asian Tapas + Bar" /> <span>Juju Asian Tapas + Bar</span></label>
+            <label class="choice"><input type="checkbox" data-group="food" data-label="Mateo Bar de Tapas" /> <span>Mateo Bar de Tapas</span></label>
+            <label class="choice"><input type="checkbox" data-group="food" data-label="Sora Sushi &amp; Bar" /> <span>Sora Sushi &amp; Bar</span></label>
+            <label class="choice"><input type="checkbox" data-group="food" data-label="Other cute place" /> <span>Other cute place of your choosing</span></label>
+            <input class="free-input" type="text" data-free-for="food" placeholder="Her dinner spot here..." />
+          </div>
+        </div>
+
+        <div class="option-card">
+          <h3>🎵 Concert</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="concert" data-label="The Pinhook" /> <span>The Pinhook</span></label>
+            <label class="choice"><input type="checkbox" data-group="concert" data-label="Local 506" /> <span>Local 506</span></label>
+            <label class="choice"><input type="checkbox" data-group="concert" data-label="Cat's Cradle Back Room" /> <span>Cat's Cradle Back Room</span></label>
+            <label class="choice"><input type="checkbox" data-group="concert" data-label="Other downtown music move" /> <span>Other downtown music move</span></label>
+            <input class="free-input" type="text" data-free-for="concert" placeholder="Her concert idea here..." />
+          </div>
+        </div>
+
+        <div class="option-card">
+          <h3>🌅 Picnic and Sunset</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="picnic" data-label="Jordan Lake" /> <span>Jordan Lake</span></label>
+            <label class="choice"><input type="checkbox" data-group="picnic" data-label="Other picnic spot" /> <span>Other</span></label>
+            <input class="free-input" type="text" data-free-for="picnic" placeholder="At Jordan Lake or other..." />
+          </div>
+        </div>
+
+        <div class="option-card">
+          <h3>🧖‍♀️ Spa Day</h3>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="spa" data-label="The Spa at Fearrington" /> <span>The Spa at Fearrington</span></label>
+            <label class="choice"><input type="checkbox" data-group="spa" data-label="Hillsborough Spa &amp; Day Retreat" /> <span>Hillsborough Spa &amp; Day Retreat</span></label>
+            <label class="choice"><input type="checkbox" data-group="spa" data-label="Other spa softness" /> <span>Other spa softness</span></label>
+            <input class="free-input" type="text" data-free-for="spa" placeholder="Her spa pick here..." />
+          </div>
+        </div>
+
+        <div class="option-card" style="grid-column: 1 / -1;">
+          <h3>🧺 Thrifting + Wash-Dry Add-On</h3>
+          <p class="note">A quick thrifting and wash-dry trip can totally be a date by itself, but it can also be a sweet lead-in to another date with outfits of our choice.</p>
+          <div class="checks">
+            <label class="choice"><input type="checkbox" data-group="extra" data-label="A quick thrifting and wash-dry trip" /> <span>Quick thrifting + wash-dry trip</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mix-note">✨ Pick whatever sounds good. One thing is enough, and more than one can be selected if that feels cuter.</div>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <h3>🫶 Outdoor Picks Together</h3>
+          <p>Everything she chooses gets consolidated here so the plan reads like one soft night instead of separate boxes.</p>
+          <div class="summary-output" id="outdoor-summary-list">No outdoor picks selected yet — choose whatever sounds good.</div>
+        </div>
+        <div class="summary-card">
+          <h3>💬 Your Outdoor Text Message</h3>
+          <div class="summary-output" id="outdoor-text-paragraph">Text me this paragraph once you have picked your outdoor combo ♡</div>
+          <div class="action-row">
+            <button class="copy-btn" type="button" data-copy-target="outdoor-text-paragraph">📋 Copy Paragraph</button>
+          </div>
+          <p class="summary-hint">Send me this paragraph over text once it feels right 🌙</p>
+        </div>
+      </div>
+
+      <p class="footer-note"><a class="top-link" href="#top">↑ Back to the Front Page</a></p>
+    </section>
+  </main>
+  <script>
+    const music = document.getElementById("bg-music");
+    const musicButton = document.getElementById("music-toggle");
+    let started = false;
+
+    async function startMusic() {
+      try {
+        music.volume = 0.35;
+        await music.play();
+        started = true;
+        musicButton.textContent = "🎶 Music On";
+      } catch (err) {
+        musicButton.textContent = "🎵 Tap for Music";
+        console.error(err);
+      }
+    }
+
+    musicButton.addEventListener("click", async () => {
+      if (!started) {
+        await startMusic();
+        return;
+      }
+
+      if (music.paused) {
+        await music.play();
+        musicButton.textContent = "🎶 Music On";
+      } else {
+        music.pause();
+        musicButton.textContent = "🎵 Resume Music";
+      }
+    });
+
+    function uniqueKeepOrder(arr) {
+      const seen = new Set();
+      return arr.filter(item => {
+        const key = item.trim().toLowerCase();
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function joinNice(items) {
+      if (!items.length) return '';
+      if (items.length === 1) return items[0];
+      if (items.length === 2) return items[0] + ' and ' + items[1];
+      return items.slice(0, -1).join(', ') + ', and ' + items[items.length - 1];
+    }
+
+    function collectGroup(section, group) {
+      const checks = Array.from(section.querySelectorAll('input[type="checkbox"][data-group="' + group + '"]:checked'))
+        .map(el => el.dataset.label || '')
+        .filter(Boolean);
+      const free = section.querySelector('[data-free-for="' + group + '"]');
+      const freeValue = free && free.value.trim() ? free.value.trim() : '';
+      return uniqueKeepOrder([...checks, ...(freeValue ? [freeValue] : [])]);
+    }
+
+    function buildIndoorSummary(section) {
+      const cheese = collectGroup(section, 'cheese');
+      const meat = collectGroup(section, 'meat');
+      const jam = collectGroup(section, 'jam');
+      const cracker = collectGroup(section, 'cracker');
+      const musicChoices = collectGroup(section, 'music');
+      const outfit = collectGroup(section, 'outfit');
+      const activity = collectGroup(section, 'activity');
+
+      const listBits = [];
+      if (cheese.length) listBits.push('Cheese: ' + joinNice(cheese));
+      if (meat.length) listBits.push('Meat: ' + joinNice(meat));
+      if (jam.length) listBits.push('Jam: ' + joinNice(jam));
+      if (cracker.length) listBits.push('Crackers: ' + joinNice(cracker));
+      if (musicChoices.length) listBits.push('Music: ' + joinNice(musicChoices));
+      if (outfit.length) listBits.push('Outfit: ' + joinNice(outfit));
+      if (activity.length) listBits.push('Activity: ' + joinNice(activity));
+
+      const summaryList = document.getElementById('indoor-summary-list');
+      const textParagraph = document.getElementById('indoor-text-paragraph');
+
+      if (!listBits.length) {
+        summaryList.textContent = 'No indoor picks selected yet — choose as little or as much as you want.';
+        textParagraph.textContent = 'Text me this paragraph once you have picked your indoor combo ♡';
+        return;
+      }
+
+      summaryList.textContent = listBits.join(' · ');
+
+      const paragraphParts = [];
+      if (activity.length) paragraphParts.push('For date night in, I am feeling ' + joinNice(activity));
+      if (cheese.length || meat.length || jam.length || cracker.length) {
+        const boardParts = [];
+        if (cheese.length) boardParts.push('cheese like ' + joinNice(cheese));
+        if (meat.length) boardParts.push('meat like ' + joinNice(meat));
+        if (jam.length) boardParts.push('jam like ' + joinNice(jam));
+        if (cracker.length) boardParts.push('crackers like ' + joinNice(cracker));
+        paragraphParts.push('For the board, I would want ' + joinNice(boardParts));
+      }
+      if (musicChoices.length) paragraphParts.push('Music-wise I would pick ' + joinNice(musicChoices));
+      if (outfit.length) paragraphParts.push('Outfit-wise I am leaning ' + joinNice(outfit));
+      paragraphParts.push('Also yes to optional potato bed time after 🥔');
+      textParagraph.textContent = paragraphParts.join('. ') + '.';
+    }
+
+    function buildOutdoorSummary(section) {
+      const food = collectGroup(section, 'food');
+      const concert = collectGroup(section, 'concert');
+      const picnic = collectGroup(section, 'picnic');
+      const spa = collectGroup(section, 'spa');
+      const extra = collectGroup(section, 'extra');
+
+      const listBits = [];
+      if (food.length) listBits.push('Food: ' + joinNice(food));
+      if (concert.length) listBits.push('Concert: ' + joinNice(concert));
+      if (picnic.length) listBits.push('Picnic: ' + joinNice(picnic));
+      if (spa.length) listBits.push('Spa: ' + joinNice(spa));
+      if (extra.length) listBits.push('Add-on: ' + joinNice(extra));
+
+      const summaryList = document.getElementById('outdoor-summary-list');
+      const textParagraph = document.getElementById('outdoor-text-paragraph');
+
+      if (!listBits.length) {
+        summaryList.textContent = 'No outdoor picks selected yet — choose whatever sounds good.';
+        textParagraph.textContent = 'Text me this paragraph once you have picked your outdoor combo ♡';
+        return;
+      }
+
+      summaryList.textContent = listBits.join(' · ');
+
+      const mainParts = [
+        ...(food.length ? ['food at ' + joinNice(food)] : []),
+        ...(concert.length ? ['a concert move like ' + joinNice(concert)] : []),
+        ...(picnic.length ? ['a picnic and sunset at ' + joinNice(picnic)] : []),
+        ...(spa.length ? ['a spa option like ' + joinNice(spa)] : [])
+      ];
+
+      const paragraphParts = [];
+      if (mainParts.length) {
+        paragraphParts.push('For date night out, I would be into ' + joinNice(mainParts));
+      }
+      if (extra.length) {
+        paragraphParts.push('A quick thrifting and wash-dry trip also sounds cute, either as its own little date or as a lead-in with outfits of our choice');
+      }
+      paragraphParts.push('I like that this can stay flexible and low-pressure');
+      textParagraph.textContent = paragraphParts.join('. ') + '.';
+    }
+
+    function updateAllSummaries() {
+      const indoorSection = document.getElementById('date-night-in');
+      const outdoorSection = document.getElementById('date-night-out');
+      buildIndoorSummary(indoorSection);
+      buildOutdoorSummary(outdoorSection);
+    }
+
+    document.querySelectorAll('input[type="checkbox"], .free-input').forEach(el => {
+      el.addEventListener('input', updateAllSummaries);
+      el.addEventListener('change', updateAllSummaries);
+    });
+
+    document.querySelectorAll('[data-copy-target]').forEach(button => {
+      button.addEventListener('click', async () => {
+        const target = document.getElementById(button.dataset.copyTarget);
+        const text = target ? target.textContent.trim() : '';
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          const original = button.textContent;
+          button.textContent = '✅ Copied';
+          setTimeout(() => button.textContent = original, 1400);
+        } catch (e) {
+          button.textContent = 'Copy failed';
+          setTimeout(() => button.textContent = '📋 Copy Paragraph', 1400);
+        }
+      });
+    });
+
+    updateAllSummaries();
+  </script>
+</body>
+</html>
